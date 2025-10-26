@@ -1,0 +1,6 @@
+transformers
+torch
+tf-keras
+fastapi
+uvicorn
+pydantic

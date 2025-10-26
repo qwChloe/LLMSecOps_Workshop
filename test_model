@@ -1,0 +1,14 @@
+from transformers import pipeline
+
+# Initialize a question-answering pipeline
+qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
+
+# Define your context and question
+context = "Hugging Face is a technology company that provides open-source NLP libraries and model hosting."
+question = "What does Hugging Face provide?"
+
+# Get the answer
+answer = qa_pipeline(question=question, context=context)
+
+print(f"Question: {question}")
+print(f"Answer: {answer['answer']}")
