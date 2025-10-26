@@ -64,6 +64,8 @@ jobs:
         severity: 'CRITICAL,HIGH'
         scanners: 'vuln'
         exit-code: '0'
+        timeout: 15m
+        skip-version-check: true
 
     - name: Upload Trivy results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v3
