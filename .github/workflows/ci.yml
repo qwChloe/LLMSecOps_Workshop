@@ -30,7 +30,11 @@ jobs:
         docker system prune -af || true    
 
     - name: Build Docker image
-      run: docker build -t fastapi-app .
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        tags: fastapi-app:latest
+        load: true   
 
     - name: Free disk space before Trivy
       run: |
@@ -46,6 +50,7 @@ jobs:
         format: 'sarif'
         output: 'trivy-results.sarif'
         severity: 'CRITICAL,HIGH'
+        scanners: 'vuln'
         exit-code: '0'
 
     - name: Upload Trivy results to GitHub Security tab
