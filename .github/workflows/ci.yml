@@ -32,6 +32,12 @@ jobs:
     - name: Build Docker image
       run: docker build -t fastapi-app .
 
+    - name: Free disk space before Trivy
+      run: |
+        sudo rm -rf /usr/local/lib/android
+        docker system prune -af || true
+        df -h
+      
     # Add Trivy security scan here
     - name: Run Trivy vulnerability scan
       uses: aquasecurity/trivy-action@master
